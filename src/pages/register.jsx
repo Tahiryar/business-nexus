@@ -1,14 +1,14 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-function Login() {
+function register() {
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // Backend login logic here (optional)
-    alert('Login successful!');
-    // navigate('/dashboard'); // Redirect to dashboard or home if needed
+    // Backend call here (optional)
+    alert('Registration successful!');
+    navigate('/'); // Redirect to login page
   };
 
   const styles = {
@@ -23,8 +23,8 @@ function Login() {
       justifyContent: 'center',
       alignItems: 'center',
     },
-    loginBox: {
-      width: '350px',
+    registerBox: {
+      width: '380px',
       padding: '40px',
       background: 'rgba(255, 255, 255, 0.05)',
       border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -63,14 +63,7 @@ function Login() {
       color: 'white',
       transform: 'translateY(-50%)',
     },
-    options: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      color: 'white',
-      fontSize: '0.9rem',
-      marginBottom: '20px',
-    },
-    loginBtn: {
+    registerBtn: {
       width: '100%',
       padding: '10px',
       background: 'linear-gradient(to right, #0072ff, #00c6ff)',
@@ -79,8 +72,9 @@ function Login() {
       color: 'white',
       fontWeight: 'bold',
       cursor: 'pointer',
+      marginTop: '10px',
     },
-    registerText: {
+    loginText: {
       marginTop: '15px',
       color: '#00d4ff',
       fontSize: '0.9rem',
@@ -89,9 +83,13 @@ function Login() {
 
   return (
     <div style={styles.container}>
-      <div style={styles.loginBox}>
+      <div style={styles.registerBox}>
         <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User" style={styles.profileImg} />
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSubmit}>
+          <div style={styles.inputGroup}>
+            <i className="fa fa-user" style={styles.icon}></i>
+            <input type="text" placeholder="Full Name" required style={styles.input} />
+          </div>
           <div style={styles.inputGroup}>
             <i className="fa fa-envelope" style={styles.icon}></i>
             <input type="email" placeholder="Email" required style={styles.input} />
@@ -100,20 +98,18 @@ function Login() {
             <i className="fa fa-lock" style={styles.icon}></i>
             <input type="password" placeholder="Password" required style={styles.input} />
           </div>
-          <div style={styles.options}>
-            <label>
-              <input type="checkbox" /> Remember me
-            </label>
-            <a href="#" style={{ color: '#00d4ff' }}>Forgot Password?</a>
+          <div style={styles.inputGroup}>
+            <i className="fa fa-lock" style={styles.icon}></i>
+            <input type="password" placeholder="Confirm Password" required style={styles.input} />
           </div>
-          <button type="submit" style={styles.loginBtn}>LOGIN</button>
+          <button type="submit" style={styles.registerBtn}>REGISTER</button>
         </form>
-        <div style={styles.registerText}>
-          Don’t have an account? <Link to="/register" style={{ color: '#00c6ff' }}>Register</Link>
+        <div style={styles.loginText}>
+          Already have an account? <Link to="/" style={{ color: '#00c6ff' }}>Login</Link>
         </div>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default register;
